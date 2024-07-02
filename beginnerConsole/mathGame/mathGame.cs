@@ -30,7 +30,7 @@ while (lives > 0) {
     } while(valid == false);
     
     if (menuChoice == "5") {
-        StreamReader reader = new StreamReader("highScores.txt");
+        StreamReader reader = new StreamReader("highScore.txt");
         string? line = reader.ReadLine();
         while (line != null) {
             Console.WriteLine($"Your current highscore is {line}!");
