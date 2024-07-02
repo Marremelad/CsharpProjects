@@ -5,7 +5,7 @@ string menuChoice = "";
 
 // Game variables
 Random random = new Random();
-int lives = 3;
+int lives = 1;
 int answer = 0;
 int playerAnswer = 0;
 int int1;
@@ -95,7 +95,16 @@ while (lives > 0) {
         }   
     }
 }
-StreamWriter writer = new StreamWriter("highScore.txt");
-writer.WriteLine(score);
-writer.Close();
+
+StreamReader readerTwo = new StreamReader("highScore.txt");
+string? lineTwo = readerTwo.ReadLine();
+int highSCore = Convert.ToInt32(lineTwo);
+readerTwo.Close();
+
+if (score > highSCore) {
+    StreamWriter writer = new StreamWriter("highScore.txt");
+    writer.WriteLine(score);
+    writer.Close();
+}
+
 Console.WriteLine("You lose!");
