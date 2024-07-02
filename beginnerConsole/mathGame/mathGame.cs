@@ -4,8 +4,8 @@ string? readResult;
 string menuChoice = "";
 
 // Read from and write to file
-StreamReader reader = new StreamReader("highScores.txt");
-StreamWriter writer = new StreamWriter("highScores.txt");
+
+// StreamWriter writer = new StreamWriter("highScores.txt");
 
 
 // Game variables
@@ -26,7 +26,7 @@ while (lives > 0) {
         Console.WriteLine("Choose an option by typing its number");
         readResult = Console.ReadLine();
         if (String.IsNullOrEmpty(readResult) == false) {
-            if (readResult == "1" || readResult == "2" || readResult == "3" || readResult == "4" ) {
+            if (readResult == "1" || readResult == "2" || readResult == "3" || readResult == "4" || readResult == "5") {
                 menuChoice = readResult;
                 valid = true;
 
@@ -65,12 +65,15 @@ while (lives > 0) {
             Console.WriteLine($"What is {int1} divided ny {int2}?");
             break;
         case "5":
+            StreamReader reader = new StreamReader("highScores.txt");
             string? line = reader.ReadLine();
             while (line != null) {
-                Console.WriteLine(line);
+                Console.WriteLine($"Your best score is {line}");
                 line = reader.ReadLine();
             }
             reader.Close();
+            Console.WriteLine("Press enter to go back to the menu");
+            Console.ReadLine();
             break;
 
 
