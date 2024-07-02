@@ -3,6 +3,11 @@ bool valid = false;
 string? readResult;
 string menuChoice = "";
 
+// Read from and write to file
+StreamReader reader = new StreamReader("highScores.txt");
+StreamWriter writer = new StreamWriter("highScores.txt");
+
+
 // Game variables
 Random random = new Random();
 int lives = 3;
@@ -12,10 +17,10 @@ int int1;
 int int2;
 int score = 0;
 
-Console.WriteLine("Welcome to the math game");
+Console.WriteLine("Welcome to the math game\n");
 
 while (lives > 0) {
-    Console.WriteLine("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n");
+    Console.WriteLine("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. See highscore\n");
 
     do {
         Console.WriteLine("Choose an option by typing its number");
@@ -59,6 +64,16 @@ while (lives > 0) {
             answer = int1 / int2;
             Console.WriteLine($"What is {int1} divided ny {int2}?");
             break;
+        case "5":
+            string? line = reader.ReadLine();
+            while (line != null) {
+                Console.WriteLine(line);
+                line = reader.ReadLine();
+            }
+            reader.Close();
+            break;
+
+
     }
 
     do {
@@ -74,10 +89,12 @@ while (lives > 0) {
 
     if (playerAnswer == answer) {
         score += 1;
-        Console.WriteLine($"Correct answer!\nYour current score is {score}");
+        Console.WriteLine($"Correct answer!\nYour current score is {score}\n");
     }
     else {
         lives -= 1;
-        Console.WriteLine($"Wrong answer\nYou have {lives} lives left");
+        Console.WriteLine($"Wrong answer\nYou have {lives} lives left\n");
     }
 }
+
+Console.WriteLine("You Lose!");
